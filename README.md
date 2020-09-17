@@ -1,24 +1,17 @@
-# README
+rails controller
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+/home/index - List all vídeos
 
-Things you may want to cover:
+signed_user - create_video - name - video file - short_description
 
-* Ruby version
+    - edit video
+       - all atributtes of create_video
 
-* System dependencies
+react
 
-* Configuration
+/ - list all videos
 
-* Database creation
+/video/:url - player - name - views count
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    - on video play
+       - add a view
