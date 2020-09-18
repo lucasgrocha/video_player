@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import videosService from '../../services/videosService'
 
 function Home() {
-  return <div>123</div>;
+
+  useEffect(() => {
+    videosService.index().then(res => {
+      console.log(res.data)
+    })
+  }, [])
+
+  return (
+    <div className='container'>
+
+    </div>
+  );
 }
 
 export default Home;
