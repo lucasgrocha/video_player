@@ -5,6 +5,7 @@ class CreateVideos < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :views
       t.string :file
+      t.belongs_to :user, index: true
 
       t.timestamps
     end

@@ -3,6 +3,7 @@ FactoryBot.define do
     name        { FFaker::Lorem.words.join(' ') }
     description { FFaker::Lorem.paragraph }
     views       { rand(0..100) }
+    user        { FactoryBot.create(:user) }
 
     before :create do |video|
       tmp_dir = Rails.root.join('tmp')
