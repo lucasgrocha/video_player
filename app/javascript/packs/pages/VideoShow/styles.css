@@ -1,0 +1,17 @@
+#video {
+  display: flex;
+  justify-content: space-between;
+}
+
+#video-box {
+  width: 80%;
+}
+
+#videos-list {
+  width: 20%;
+}
+
+#player > div {
+  height: auto !important;
+  width: 100% !important;
+}
