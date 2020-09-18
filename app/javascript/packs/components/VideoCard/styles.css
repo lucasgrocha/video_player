@@ -1,0 +1,51 @@
+.video-card {
+  background-color: white;
+  cursor: pointer;
+  flex: 0 0 calc(25% - 2rem);
+  margin: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.info {
+  margin-left: 0.5rem;
+}
+
+.info h3 {
+  color: black !important;
+  font-weight: bolder;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.thumbnail img {
+  width: 100%;
+}
+
+.info h3,
+#user-name {
+  margin: 0 !important;
+}
+
+#user-name {
+  font-size: 1.4rem;
+}
+
+#views {
+  color: rgb(65, 65, 65);
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+@media screen and (max-width: 1000px) {
+  .video-card {
+    flex: 0 0 calc(33.3% - 2rem);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .video-card {
+    flex: 0 0 calc(100% - 2rem);
+  }
+}
