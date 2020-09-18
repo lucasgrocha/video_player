@@ -1,7 +1,8 @@
-import api from './api'
+import api from './api';
 
 const videosService = {
-  index: () => api.get('/video')
-}
+  index: () => api.get('/video'),
+  show: (id) => api.get(`/video/${id}`),
+};
 
-export default videosService
+export default videosService;
