@@ -1,18 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import videosService from '../../services/videosService'
 
 function Home() {
 
+  const [videos, setVideos] = useState()
+
   useEffect(() => {
     videosService.index().then(res => {
-      console.log(res.data)
+      setVideos(res.data)
     })
   }, [])
 
+  if (!videos) {
+    return null
+  }
+
   return (
     <div className='container'>
-
+      { videos[1].name }
     </div>
   );
 }

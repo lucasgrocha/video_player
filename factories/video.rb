@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :video do
-    name        { FFaker::Lorem.paragraph }
-    description { FFaker::Lorem.words.join(' ') }
+    name        { FFaker::Lorem.words.join(' ') }
+    description { FFaker::Lorem.paragraph }
     views       { rand(0..100) }
 
     before :create do |video|
