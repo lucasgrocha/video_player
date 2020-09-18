@@ -15,3 +15,11 @@
   height: auto !important;
   width: 100% !important;
 }
+
+#video-infos > p {
+  margin: 0;
+}
+
+#description {
+  margin-top: 1rem !important;
+}

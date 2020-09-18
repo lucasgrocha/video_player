@@ -39,7 +39,7 @@ function VideoShow() {
             <h1>{video.name}</h1>
             <p>{video.user_name}</p>
             <p>{video.views} visualizações</p>
-            <p>{video.description}</p>
+            <p id="description">{video.description}</p>
           </div>
         </div>
         <div id="videos-list"></div>
