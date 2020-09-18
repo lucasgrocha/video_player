@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-
+import ReactPlayer from 'react-player';
 import { useParams } from 'react-router-dom';
 
-import videosService from '../../services/videosService';
-
-import ReactPlayer from 'react-player';
-
 import './styles.css';
+import videosService from '../../services/videosService';
+import VideoCard from '../../components/VideoCard';
 
 function VideoShow() {
   const { id } = useParams();
   const [video, setVideo] = useState();
+  const [recommendedVideos, setRecommendedVideos] = useState();
 
   useEffect(() => {
     videosService.show(id).then((res) => {
@@ -18,7 +17,13 @@ function VideoShow() {
     });
   }, []);
 
-  if (!video) {
+  useEffect(() => {
+    videosService.recommended_videos().then((res) => {
+      setRecommendedVideos(res.data);
+    });
+  }, []);
+
+  if (!video || !recommendedVideos) {
     return null;
   }
 
@@ -42,7 +47,18 @@ function VideoShow() {
             <p id="description">{video.description}</p>
           </div>
         </div>
-        <div id="videos-list"></div>
+        <div id="videos-list">
+          {recommendedVideos.map((video) => (
+            <VideoCard
+              id={video.id}
+              key={video.id}
+              name={video.name}
+              thumbnail_url={video.thumbnail_url}
+              views={video.views}
+              userName={video.user_name}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

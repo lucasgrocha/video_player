@@ -23,6 +23,12 @@ class Api::V1::VideoController < ApplicationController
     render status: :ok
   end
 
+  def recommended_videos
+    @videos = Video.first(10).shuffle
+
+    render 'index', status: :ok
+  end
+
   def video_params
     params.require(:video).permit(:name, :description, :file)
   end

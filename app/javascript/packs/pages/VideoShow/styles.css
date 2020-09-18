@@ -8,7 +8,12 @@
 }
 
 #videos-list {
-  width: 20%;
+  width: 19%;
+}
+
+#videos-list .video-card {
+  margin: 0;
+  padding: 0;
 }
 
 #player > div {
@@ -22,4 +27,20 @@
 
 #description {
   margin-top: 1rem !important;
+  margin-bottom: 4rem !important;
+}
+
+@media screen and (max-width: 768px) {
+  #video {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #videos-list {
+    width: 100%;
+  }
+
+  #video-box {
+    width: 100%;
+  }
 }
