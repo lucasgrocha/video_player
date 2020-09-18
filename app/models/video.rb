@@ -1,3 +1,3 @@
 class Video < ApplicationRecord
-  mount_uploaders :files, FileUploader
+  mount_uploader :file, FileUploader
 end
