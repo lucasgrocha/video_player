@@ -22,9 +22,17 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+.thumbnail {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
 
 .thumbnail img {
-  width: 100%;
+  /* remove the lines below */
+  min-height: 0;
+  max-width: 100%;
 }
 
 .info h3,

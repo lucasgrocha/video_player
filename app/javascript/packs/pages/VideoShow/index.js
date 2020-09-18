@@ -23,6 +23,10 @@ function VideoShow() {
     });
   }, [id]);
 
+  useEffect(() => {
+    document.querySelector('html').scrollTop = 0;
+  }, [id]);
+
   if (!video || !recommendedVideos) {
     return null;
   }

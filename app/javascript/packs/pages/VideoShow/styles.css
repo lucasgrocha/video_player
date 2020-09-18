@@ -7,6 +7,10 @@
   width: 80%;
 }
 
+#player > div {
+  height: 45rem !important;
+}
+
 #videos-list {
   width: 19%;
 }
@@ -17,7 +21,6 @@
 }
 
 #player > div {
-  height: auto !important;
   width: 100% !important;
 }
 
