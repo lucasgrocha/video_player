@@ -6,6 +6,10 @@
   padding-bottom: 0.5rem;
 }
 
+.video-card:hover {
+  text-decoration: none;
+}
+
 .info {
   margin-left: 0.5rem;
 }
@@ -30,6 +34,7 @@
 
 #user-name {
   font-size: 1.4rem;
+  color: black;
 }
 
 #views {

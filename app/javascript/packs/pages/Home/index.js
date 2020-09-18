@@ -23,6 +23,7 @@ function Home() {
       <div id="videos">
         {videos.map((video) => (
           <VideoCard
+            id={video.id}
             key={video.id}
             name={video.name}
             thumbnail_url={video.thumbnail_url}
