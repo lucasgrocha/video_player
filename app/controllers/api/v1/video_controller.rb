@@ -11,10 +11,16 @@ class Api::V1::VideoController < ApplicationController
     @video = Video.new(video_params)
 
     if @video.save
-      render json: {msg: 'ok'}, status: :created
+      render json: { msg: 'ok' }, status: :created
     else
       render status: :unprocessable_entity
     end
+  end
+
+  def show
+    @video = Video.find(params[:id])
+
+    render status: :ok
   end
 
   def video_params
