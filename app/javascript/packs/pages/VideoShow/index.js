@@ -15,13 +15,13 @@ function VideoShow() {
     videosService.show(id).then((res) => {
       setVideo(res.data);
     });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     videosService.recommended_videos().then((res) => {
       setRecommendedVideos(res.data);
     });
-  }, []);
+  }, [id]);
 
   if (!video || !recommendedVideos) {
     return null;
