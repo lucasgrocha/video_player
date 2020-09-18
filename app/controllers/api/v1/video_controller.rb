@@ -2,6 +2,8 @@ class Api::V1::VideoController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
+    @videos = Video.select(:id, :name, :description, :file).order(created_at: :desc)
+
     render status: :ok
   end
 
