@@ -29,7 +29,7 @@ gem 'rack-cors'
 
 gem 'devise'
 gem 'carrierwave', '~> 2.0'
-
+gem 'carrierwave-video-thumbnailer'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
