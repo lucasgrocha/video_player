@@ -3,7 +3,7 @@ class CreateVideos < ActiveRecord::Migration[6.0]
     create_table :videos do |t|
       t.string :name
       t.string :description
-      t.string :views
+      t.integer :views
       t.string :file
       t.belongs_to :user, index: true
 
