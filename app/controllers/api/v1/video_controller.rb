@@ -1,6 +1,4 @@
-class Api::V1::VideoController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
+class Api::V1::VideoController < Api::V1::SessionsController
   def index
     @videos = Video.select(:id, :name, :description, :file, :user_id, :views).order(created_at: :desc)
 
@@ -9,11 +7,14 @@ class Api::V1::VideoController < ApplicationController
 
   def create
     @video = Video.new(video_params)
+    auth_token = request.headers['Authorization']
+    user = JwtTokenList.find_by(jwt: auth_token).user
+    @video.user = user
 
     if @video.save
-      render json: { msg: 'ok' }, status: :created
+      head :created
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
