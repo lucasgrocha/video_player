@@ -6,7 +6,9 @@ class Api::V1::SessionsController < ApplicationController
 
   def auth
     user = User.find_by(email: params[:email])
-    encrypted_pass = BCrypt::Password.new(user.encrypted_password)
+    return head :not_found if user.nil?
+
+    encrypted_pass = BCrypt::Password.new(user&.encrypted_password)
     authorized = encrypted_pass == params[:password]
 
     if authorized

@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_09_19_194229) do
   create_table "videos", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "views"
+    t.integer "views", default: 0
     t.string "file"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
