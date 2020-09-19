@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import './styles.css';
 
 function Navbar() {
-  const loggedIn = true
+  const loggedIn = document.cookie.split('=')[1] == false
 
   return (
     <div id="navbar">
