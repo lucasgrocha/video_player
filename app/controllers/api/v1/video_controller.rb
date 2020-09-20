@@ -63,6 +63,14 @@ class Api::V1::VideoController < Api::V1::SessionsController
     head :no_content if @video.destroy
   end
 
+  def increment_view
+    @video = Video.find(params[:id])
+
+    video_views = @video.views
+
+    head :ok if @video.update(views: video_views + 1)
+  end
+
   private
 
   def video_params

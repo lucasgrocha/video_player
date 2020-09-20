@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :video, only: %i[index create show destroy edit update]
       get '/recommended_videos', to: 'video#recommended_videos'
       get '/myVideos', to: 'video#user_videos'
+      put '/incrementView', to: 'video#increment_view'
       post '/auth', to: 'sessions#auth'
     end
   end
