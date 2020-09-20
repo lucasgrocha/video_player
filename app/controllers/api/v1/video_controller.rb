@@ -1,5 +1,5 @@
 class Api::V1::VideoController < Api::V1::SessionsController
-  before_action :set_user, only: %i[create user_videos]
+  before_action :set_user, only: %i[create user_videos destroy]
 
   def index
     @videos = Video.select(:id, :name, :description, :file, :user_id, :views).order(created_at: :desc)
@@ -34,6 +34,14 @@ class Api::V1::VideoController < Api::V1::SessionsController
     @videos = @user&.videos
 
     render 'index', status: :ok
+  end
+
+  def destroy
+    @video = Video.find(params[:id])
+
+    return head :unprocessable_entity unless @video.user == @user
+
+    head :no_content if @video.destroy
   end
 
   private
