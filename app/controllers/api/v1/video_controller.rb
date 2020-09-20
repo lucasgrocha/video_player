@@ -1,4 +1,6 @@
 class Api::V1::VideoController < Api::V1::SessionsController
+  before_action :set_user, only: %i[create user_videos]
+
   def index
     @videos = Video.select(:id, :name, :description, :file, :user_id, :views).order(created_at: :desc)
 
@@ -7,9 +9,7 @@ class Api::V1::VideoController < Api::V1::SessionsController
 
   def create
     @video = Video.new(video_params)
-    auth_token = request.headers['Authorization']
-    user = JwtTokenList.find_by(jwt: auth_token).user
-    @video.user = user
+    @video.user = @user
 
     if @video.save
       head :created
@@ -30,7 +30,20 @@ class Api::V1::VideoController < Api::V1::SessionsController
     render 'index', status: :ok
   end
 
+  def user_videos
+    @videos = @user&.videos
+
+    render 'index', status: :ok
+  end
+
+  private
+
   def video_params
     params.require(:video).permit(:name, :description, :file)
+  end
+
+  def set_user
+    auth_token = request.headers['Authorization']
+    @user = JwtTokenList.find_by(jwt: auth_token).user
   end
 end
