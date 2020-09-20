@@ -2,20 +2,14 @@ class Api::V1::SessionsController < ApplicationController
   before_action :check_token, if: -> { request.post? && request.env['REQUEST_PATH'] != '/api/v1/auth' }
   skip_before_action :verify_authenticity_token
 
-  include BCrypt
-
   def auth
     user = User.find_by(email: params[:email])
     return head :not_found if user.nil?
 
-    encrypted_pass = BCrypt::Password.new(user&.encrypted_password)
-    authorized = encrypted_pass == params[:password]
+    jwt_instance = JWTManager::Auth.new(user, params[:password])
 
-    if authorized
-      payload = "#{user.email} #{encrypted_pass}"
-      token = JWT.encode payload, nil, 'none'
-
-      JwtTokenList.find_or_create_by(jwt: token, user: user)
+    if jwt_instance.authorized?
+      token = jwt_instance.token!
 
       render json: { token: token }, status: :ok
     end
