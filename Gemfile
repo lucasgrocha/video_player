@@ -31,15 +31,19 @@ gem 'devise'
 gem 'carrierwave', '~> 2.0'
 gem 'jwt'
 gem 'carrierwave-video-thumbnailer'
+gem 'pry-rails'
+gem 'fog-aws'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-  gem 'pry-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'dotenv-rails'
 end
 
 group :development do
