@@ -48,6 +48,40 @@ RSpec.describe 'Api::V1::VideosController', type: :request do
       end
     end
 
+    describe 'PUT /api/v1/videos/:id' do
+      context 'when has valid Authentication token' do
+        let(:video) { create(:video, user: JwtTokenList.find_by(jwt: token).user) }
+
+        before do
+          put "/api/v1/videos/#{video.id}", params: {
+            video: {
+              name: 'New name',
+              description: 'New description'
+            }
+          }, headers: { 'Authorization': token }
+        end
+
+        it 'returns http status success' do
+          expect(response).to have_http_status(:success)
+        end
+
+        it 'verifies the updated video data' do
+          expect(Video.find(video.id).name).to eq('New name')
+          expect(Video.find(video.id).description).to eq('New description')
+        end
+
+        context 'when has not valid Authentication token' do
+          let(:video) { create(:video, user: JwtTokenList.find_by(jwt: token).user) }
+
+          it 'returns unprocessable_entity http status code' do
+            put "/api/v1/videos/#{video.id}", params: {}, headers: { 'Authorization': '' }
+
+            expect(response).to have_http_status(:unprocessable_entity)
+          end
+        end
+      end
+    end
+
     context 'when has not valid user info' do
       describe 'POST /api/v1/auth' do
         it 'returns forbidden http status' do
