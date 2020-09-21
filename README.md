@@ -134,7 +134,7 @@ Update a video
 
 Request body
 
-```json
+```
  {
    "video":{
       "name":"Lucas",
