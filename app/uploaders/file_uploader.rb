@@ -5,7 +5,7 @@ class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::Video::Thumbnailer
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -35,15 +35,15 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb do
-    process thumbnail: [{format: 'png', quality: 40, size: 192, strip: false, logger: Rails.logger}]
-  
-    def full_filename for_file
+    process thumbnail: [{ format: 'png', quality: 40, size: 192, strip: false, logger: Rails.logger }]
+
+    def full_filename(for_file)
       png_name for_file, version_name
     end
   end
-  
+
   def png_name for_file, version_name
-    %Q{#{version_name}_#{for_file.chomp(File.extname(for_file))}.png}
+    %(#{version_name}_#{for_file.chomp(File.extname(for_file))}.png)
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
