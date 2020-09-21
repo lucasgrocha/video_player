@@ -10,8 +10,7 @@ Rails.application.routes.draw do
       post '/auth', to: 'sessions#auth'
     end
   end
-  devise_for :users
-  root to: 'home#index'
-  get '/*path' => 'home#index'
+  # devise_for :users
+  # root to: 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
