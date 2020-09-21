@@ -1,6 +1,6 @@
 
 ## About the project
-* This repository is an API of the [Video Player](https://github.com/lucasgrocha/video_player) frontend
+* This repository is an API for the [Video Player](https://github.com/lucasgrocha/video-player-web) frontend.
 * I used factory bot to generate fake data in rspec tests.
 * To serialize the data to send as API response, I choose the jbuilder.
 
