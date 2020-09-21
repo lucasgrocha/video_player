@@ -6,13 +6,14 @@ FactoryBot.define do
     user        { FactoryBot.create(:user) }
 
     before :create do |video|
-      tmp_dir = Rails.root.join('tmp')
-      filename_videos = Dir.entries('tmp/videos').select { |f| !File.directory? f }
+      if Rails.env.development?
+        tmp_dir = Rails.root.join('tmp')
+        filename_videos = Dir.entries('tmp/videos').select { |f| !File.directory? f }
 
-      file = File.open("#{tmp_dir}/videos/#{filename_videos.sample}")
+        file = File.open("#{tmp_dir}/videos/#{filename_videos.sample}")
 
-      video.file = file
-
+        video.file = file
+      end
     end
   end
 end
