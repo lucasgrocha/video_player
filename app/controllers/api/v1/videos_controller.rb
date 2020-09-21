@@ -50,7 +50,7 @@ class Api::V1::VideosController < Api::V1::SessionsController
   end
 
   def user_videos
-    @videos = @user&.videos
+    @videos = @user&.videos&.order(created_at: :desc)
 
     render 'index', status: :ok
   end
