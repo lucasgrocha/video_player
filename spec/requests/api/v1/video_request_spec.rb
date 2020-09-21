@@ -21,7 +21,29 @@ RSpec.describe 'Api::V1::VideosController', type: :request do
 
           parsed = json_parse(response.body)
 
-          expect(parsed['token'].size > 0).to be_truthy
+          expect(parsed['token'].empty?).to be_falsey
+        end
+      end
+    end
+
+    describe 'DELETE /api/v1/videos/:id' do
+      context 'when has valid Authentication token' do
+        let(:video) { create(:video, user: JwtTokenList.find_by(jwt: token).user) }
+
+        it 'returns no content http status code' do
+          delete "/api/v1/videos/#{video.id}", params: {}, headers: { 'Authorization': token }
+
+          expect(response).to have_http_status(:no_content)
+        end
+
+        context 'when has not valid Authentication token' do
+          let(:video) { create(:video, user: JwtTokenList.find_by(jwt: token).user) }
+
+          it 'returns unprocessable_entity http status code' do
+            delete "/api/v1/videos/#{video.id}", params: {}, headers: { 'Authorization': '' }
+
+            expect(response).to have_http_status(:unprocessable_entity)
+          end
         end
       end
     end

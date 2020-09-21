@@ -79,6 +79,6 @@ class Api::V1::VideosController < Api::V1::SessionsController
 
   def set_user
     auth_token = request.headers['Authorization']
-    @user = JwtTokenList.find_by(jwt: auth_token).user
+    @user = JwtTokenList.find_by(jwt: auth_token)&.user
   end
 end
