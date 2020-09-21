@@ -274,12 +274,15 @@ HTTP STATUS: 200
 
 ###   Some considerations
 
-* My first idea was integrate both ReactJS and Rails in the same project with webpacker, although I ran into some problems because was my first time trying It.
-
-* Thereafter I decided to split out the React and Rails into different repositories.
+* My first idea was integrate both ReactJS and Rails in the same project with webpacker, although I ran into some problems because was my first time trying It. Thereafter I decided to split out the React and Rails into different repositories.
 
 * Was not possible to deploy the API on Heroku because I would spend some time to install the ```ffmpegthumbnailer``` on the server, them I decided to leave aside this idea and focus on rpsec testing.
 
+* In production the uploaded video should be save in AWS S3 (there's a config file at ```ìnitializers/carrierwave.rb``` to manage the storage).
+
+* I made my own JWT authentication based on Its concepts to prevent spending time configuring devise and jwt from scratch.
+
+* Was very cool to develop the application! :D
 
 
 ### Author
