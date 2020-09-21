@@ -31,7 +31,7 @@ RSpec.describe 'Api::V1::VideosController', type: :request do
         let(:video) { create(:video, user: JwtTokenList.find_by(jwt: token).user) }
 
         it 'returns no content http status code' do
-          delete "/api/v1/videos/#{video.id}", params: {}, headers: { 'Authorization': token }
+          delete "/api/v1/videos/#{video.id}", headers: { 'Authorization': token }
 
           expect(response).to have_http_status(:no_content)
         end
@@ -40,9 +40,44 @@ RSpec.describe 'Api::V1::VideosController', type: :request do
           let(:video) { create(:video, user: JwtTokenList.find_by(jwt: token).user) }
 
           it 'returns unprocessable_entity http status code' do
-            delete "/api/v1/videos/#{video.id}", params: {}, headers: { 'Authorization': '' }
+            delete "/api/v1/videos/#{video.id}", headers: { 'Authorization': '' }
 
             expect(response).to have_http_status(:unprocessable_entity)
+          end
+        end
+      end
+    end
+
+    describe 'GET /api/v1/myVideos' do
+      before do
+        videos = create_list(:video, 10)
+
+        videos.each do |video|
+          video.update(user: JwtTokenList.find_by(jwt: token).user)
+        end
+      end
+
+      context 'when has valid Authentication token' do
+        before do
+          get '/api/v1/myVideos', headers: { 'Authorization': token }
+        end
+
+        it "returns all the user's videos" do
+          parsed = json_parse(response.body)
+
+          expect(parsed.size).to eq(10)
+        end
+
+        it 'returns http status success' do
+          expect(response).to have_http_status(:success)
+        end
+
+        context 'when has not valid Authentication token' do
+          it 'returns an empty array' do
+            get '/api/v1/myVideos', headers: { 'Authorization': '' }
+
+            parsed = json_parse(response.body)
+            expect(parsed.empty?).to be_truthy
           end
         end
       end
@@ -74,7 +109,7 @@ RSpec.describe 'Api::V1::VideosController', type: :request do
           let(:video) { create(:video, user: JwtTokenList.find_by(jwt: token).user) }
 
           it 'returns unprocessable_entity http status code' do
-            put "/api/v1/videos/#{video.id}", params: {}, headers: { 'Authorization': '' }
+            put "/api/v1/videos/#{video.id}", headers: { 'Authorization': '' }
 
             expect(response).to have_http_status(:unprocessable_entity)
           end
