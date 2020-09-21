@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
-  before_action :check_token, if: -> { request.post? && request.env['REQUEST_PATH'] != '/api/v1/auth' }
+  before_action :check_token, if: -> { request.post? && request.env['PATH_INFO'] != '/api/v1/auth' }
   skip_before_action :verify_authenticity_token
 
   def auth
@@ -11,8 +11,11 @@ class Api::V1::SessionsController < ApplicationController
     if jwt_instance.authorized?
       token = jwt_instance.token!
 
-      render json: { token: token }, status: :ok
+      return render json: { token: token }, status: :ok
+
     end
+
+    head :forbidden
   end
 
   def check_token

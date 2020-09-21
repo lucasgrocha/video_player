@@ -1,8 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::VideosController', type: :request do
-  describe 'GET /videos' do
-    context 'when signed in user is not necessary' do
+  context 'when needs a signed in user' do
+    let!(:user) { attributes_for(:user) }
+    token = ''
+
+    before do
+      post '/api/v1/registrations', params: {
+        user: user
+      }
+      token = json_parse(response.body)['token']
+    end
+
+    context 'when has valid user info' do
+      describe 'POST /api/v1/auth' do
+        it 'returns jwt token' do
+          post '/api/v1/auth', params: {
+            email: user[:email], password: user[:password]
+          }
+
+          parsed = json_parse(response.body)
+
+          expect(parsed['token'].size > 0).to be_truthy
+        end
+      end
+    end
+
+    context 'when has not valid user info' do
+      describe 'POST /api/v1/auth' do
+        it 'returns forbidden http status' do
+          post '/api/v1/auth', params: {
+            email: user[:email], password: '@@@'
+          }
+
+          expect(response).to have_http_status(:forbidden)
+        end
+      end
+    end
+  end
+
+  context 'when signed in user is not necessary' do
+    describe 'GET /videos' do
       let(:videos_quantity) { 10 }
 
       before do
