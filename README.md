@@ -1,16 +1,15 @@
 
 ## About the project
+* This repository is an API of the [Video Player](https://github.com/lucasgrocha/video_player) frontend
 * I used factory bot to generate fake data in rspec tests.
-* To serialize the data to send as api response, I choose the jbuilder.
-* As i used rails 6, when configuring ngrok you need to make a small change to the development.rb file.
+* To serialize the data to send as API response, I choose the jbuilder.
 
 I wish you like the app and thank you for the opportunity! :D
 
 Best regards.
-
  ---
 
-# Octo events
+# Video Player
 
 ## Technology
 
@@ -273,6 +272,16 @@ HTTP STATUS: 200
 * Run the rspec tests
 >    $ bundle exec rspec -fd
 
-## Author
+###   Some considerations
+
+* My first idea was integrate both ReactJS and Rails in the same project with webpacker, although I ran into some problems because was my first time trying It.
+
+* Thereafter I decided to split out the React and Rails into different repositories.
+
+* Was not possible to deploy the API on Heroku because I would spend some time to install the ```ffmpegthumbnailer``` on the server, them I decided to leave aside this idea and focus on rpsec testing.
+
+
+
+### Author
 
 * **Lucas G Rocha**: @lucasgrocha (https://github.com/lucasgrocha)
