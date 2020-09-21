@@ -1,4 +1,4 @@
-class Api::V1::VideoController < Api::V1::SessionsController
+class Api::V1::VideosController < Api::V1::SessionsController
   before_action :set_user, only: %i[create user_videos destroy edit update]
 
   def index
