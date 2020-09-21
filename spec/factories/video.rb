@@ -7,10 +7,10 @@ FactoryBot.define do
 
     before :create do |video|
       if Rails.env.development?
-        tmp_dir = Rails.root.join('tmp')
-        filename_videos = Dir.entries('tmp/videos').select { |f| !File.directory? f }
+        vendor_dir = Rails.root.join('vendor')
+        filename_videos = Dir.entries('vendor/videos').select { |f| !File.directory? f }
 
-        file = File.open("#{tmp_dir}/videos/#{filename_videos.sample}")
+        file = File.open("#{vendor_dir}/videos/#{filename_videos.sample}")
 
         video.file = file
       end
