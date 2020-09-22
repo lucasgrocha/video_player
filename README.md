@@ -47,6 +47,8 @@ MacOS
 
 ## Rails setup
 
+* Download project
+>    $ git clone https://github.com/lucasgrocha/video_player.git
 * Install the gems:
 >    $ bundle install
 * Create database and migrate:
@@ -59,7 +61,7 @@ Note: I used bundler version 2.1.4, if the app get some error on **bundle instal
 
 ### Optional
 
-* There's a seed file, if you want fill the database run
+* There's a seed file, if you want fill the database:
 >    $ rails db:seed
 * Once you created and migrated, you can clean up all the database and fill It again with the seeds
 >    $ rails db:setup
@@ -130,7 +132,7 @@ HTTP STATUS: 200
 ```
 
 ### POST /api/v1/videos
-Update a video
+Create a new video
 
 Request body
 
@@ -165,7 +167,7 @@ HTTP STATUS: 204
 ```
 
 ### GET /api/v1/recommended_videos
-Return the data of a video
+Return a list of videos
 
 Example of response
 
@@ -187,7 +189,7 @@ HTTP STATUS: 200
 ```
 
 ### PUT /api/v1/incrementView
-Increment the video's views when the player start
+Increment the video's views when the player starts
 
 Example of response
 
@@ -270,6 +272,8 @@ HTTP STATUS: 200
 
 ### Testing
 
+There's 19 tests that validates the successes and the failures of each endpoint
+
 * Run the rspec tests
 >    $ bundle exec rspec -fd
 
@@ -279,11 +283,11 @@ HTTP STATUS: 200
 
 * Was not possible to deploy the API on Heroku because I would spend some time to install the ```ffmpegthumbnailer``` on the server, them I decided to leave aside this idea and focus on rpsec testing.
 
-* In production the uploaded video should be save in AWS S3 (there's a config file at ```ìnitializers/carrierwave.rb``` to manage the storage).
+* In production the uploaded video should be saved in AWS S3 (there's a config file at ```ìnitializers/carrierwave.rb``` to manage the storage on each environment).
 
-* I made my own JWT authentication based on Its concepts to prevent spending time configuring devise and jwt from scratch.
+* I made my own JWT authentication based on Its concepts to prevent spending time configuring devise and jwt from scratch, Its totally conceptual.
 
-* Was very cool to develop the application! :D
+* Was very cool to develop the application and I learned a lot of new things! :D
 
 
 ### Author
