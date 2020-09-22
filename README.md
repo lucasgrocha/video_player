@@ -7,6 +7,7 @@
 I wish you like the app and thank you for the opportunity! :D
 
 Best regards.
+
  ---
 
 # Video Player
