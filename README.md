@@ -289,6 +289,14 @@ There's 19 tests that validates the successes and the failures of each endpoint
 
 * Was very cool to develop the application and I learned a lot of new things! :D
 
+###   Some points that I would like to have made
+
+* Add validations to the models
+* Refactor the controllers and Its routes
+* Use some JWT authentication gem
+* Implement sidekiq to prevent the carrierwave upload finishes to send a response (would improve the user's experience)
+
+
 
 ### Author
 
